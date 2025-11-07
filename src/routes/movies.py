@@ -43,7 +43,7 @@ async def read_movies(
     total_items = count_result.scalar()
     total_pages = math.ceil(total_items / per_page)
 
-    base_url = "/theater/movies"
+    base_url = "/theater/movies/"
     prev_page = f"{base_url}?page={page-1}&per_page={per_page}" \
         if page > 1 else None
     next_page = f"{base_url}?page={page+1}&per_page={per_page}" \
