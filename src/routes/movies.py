@@ -38,10 +38,10 @@ async def read_movies(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="No movies found."
         )
-
-    count_result = await db.execute(select(func.count(MovieModel.id)))
-    total_items = count_result.scalar()
-    total_pages = math.ceil(total_items / per_page)
+    else:
+        count_result = await db.execute(select(func.count(MovieModel.id)))
+        total_items = count_result.scalar()
+        total_pages = math.ceil(total_items / per_page)
 
     base_url = "/theater/movies/"
     prev_page = f"{base_url}?page={page-1}&per_page={per_page}" \
